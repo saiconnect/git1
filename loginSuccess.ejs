@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> User Details </title>
+<style>
+table {
+border-collapse: collapse;
+} 
+th, td {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+</head>
+
+<body>
+<h2>The User Details</h2>
+<script>
+	$(document).ready(function() {
+                    $.ajax({
+                        type: "GET",
+                        url: "http://localhost:3000/userSuccess/",
+                        contentType: "application/json",
+                        
+                        dataType: "text",
+                        success: function( data ){
+var json = $.parseJSON(data);
+console.log(json);
+$(json).each(function(i, item) {
+console.log(item);
+$("#name").append('<div> '+item.name+ '</div>');
+$("#email").append('<div> '+item.email+ '</div>');
+$("#username").append('<div> '+item.username+ '</div>');
+$("#password").append('<div> '+item.password+ '</div>');
+$("#role").append('<div> '+item.role+ '</div>');
+$("#application").append('<div> '+item.applications+ '</div>');
+});
+}
+});
+});
+
+			/*var json = $.parseJSON(data);
+console.log(data);
+			$(json).each(function(i,val){
+			console.log(val);
+    			$.each(val,function(k,v){
+			
+		 $("#echoResult").append('<div >' + k +':'+v+'</div>');
+          console.log(k + " : " + v);     
+				});
+			});
+ 
+		  },
+                  error: function( err ){
+                  $("#echoResult").html("Error: " + err);}
+                       
+                    });
+                }); */
+       
+ /*var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() 
+{
+    if (this.readyState == 4 && this.status == 200) 
+    {
+        //var dataSet = JSON.parse(this.response);
+        //manipulate/visualise the data as you wish
+    }
+};
+xhttp.open("GET", "/loginSuccess", true);
+xhttp.send();*/
+</script>
+</div>
+<table>
+
+  <tr>
+
+    <th>Email ID   </th>
+    <th>Name     </th>
+    <th>Username   </th>
+    <th>Password    </th>
+    <th>Role </th>
+    <th>Application  </th>
+  </tr>
+
+   <tr>
+
+    <th><div id="email">    </th> </th>
+    <th><div id="name">    </th>
+    <th><div id="username">    </th>  </th>
+    <th><div id="password">    </th>  </th>
+    <th><div id="role">    </th>  </th>
+    <th><div id="application">    </th> </th>
+  </tr>
+</table>
+</body>
+</html>
